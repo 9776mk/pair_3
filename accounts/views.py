@@ -4,7 +4,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 # 로그인 기능
 from django.contrib.auth import login as auth_login
-
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
@@ -41,3 +41,10 @@ def login(request):
     }
     ######## 다른 곳으로 보내줄 곳을 위해 수정할 것! #######
     return render(request, 'accounts/signup.html', context)
+
+def index(request):
+    user = get_user_model().objects.all()
+    context = {
+        'user_': user
+    }
+    return render(request, "accounts/index.html", context)

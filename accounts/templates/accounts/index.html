@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">pk</th>
+      <th scope="col">Username</th>
+      <th scope="col">e-mail</th>
+    </tr>
+  </thead>
+  
+  {% for i in user_ %}
+  <tbody>
+    <tr>
+      <td>
+      {{ i.pk }}
+      </td>
+      <td>
+      
+      {{ i.username}}
+      </a>
+      </td>
+      <td>
+      {{ i.email}}
+      </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+
+
+<a href="" type="button" class="btn btn-outline-info">
+  Home
+</a>
+
+<a href="" type="button" class="btn btn-outline-info">
+  회원가입
+</a>
+
+
+{% endblock %}
