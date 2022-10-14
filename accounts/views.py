@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth.forms import AuthenticationForm
 # 로그인 기능
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 
 from django.contrib.auth import get_user_model
 
@@ -70,3 +71,8 @@ def update(request):
     'form': form,
     }
     return render(request, 'accounts/update.html', context)
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('accounts:index')
