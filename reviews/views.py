@@ -4,7 +4,11 @@ from .forms import ReviewsForm
 
 
 def index(request):
-    return render(request, 'reviews/index.html')
+    reviews = Reviews.objects.all()
+    context = {
+        'reviews': reviews
+    }
+    return render(request, 'reviews/index.html', context)
 
 
 # Create your views here.
@@ -21,3 +25,10 @@ def create(request):
         'review_form': review_form
     }
     return render(request, 'reviews/create.html', context=context)
+
+def detail(request,review_pk):
+    reviews = Reviews.objects.get(pk=review_pk)
+    context = {
+        'reviews':reviews
+    }
+    return render(request, 'reviews/detail.html', context)

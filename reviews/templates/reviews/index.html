@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1> 인덱스 페이지 </h1>
-<a href="{% url 'reviews:create' %}"> 리뷰 생성 </a>
+  <h1>
+    인덱스 페이지
+  </h1>
 
+  {% for review in reviews %}
 
+    <p>{{ review.movie_name }}
+      |
+      <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+    </p>
 
+  {% endfor %}
 
-{% endblock%}
+  {% endblock%}
