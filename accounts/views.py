@@ -48,3 +48,10 @@ def index(request):
         'user_': user
     }
     return render(request, "accounts/index.html", context)
+
+def detail(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    context ={
+        'user_' : user
+    }
+    return render(request,"accounts/detail.html",context)
