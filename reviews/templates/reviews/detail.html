@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  <h1>영화 리뷰 정보</h1>
+  <p>{{ reviews.movie_name }}
+    |
+    {{ reviews.title }}</p>
+
+  <p>영화 내용:{{ reviews.content }}</p>
+  <p>영화 등급:{{ reviews.grade }}</p>
+  {{ reviews.created_at }}
+  {{ reviews.updated_at }}
+
+{% endblock body %}
