@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
   <h1>회원 정보 조회</h1>
-  {{ user_.pk }}번
-  {{ user_.username }}님
+  {{ user_.pk }}번<br>
+  {{ user_.username }}님<br>
+  {{ user_.last_name }}
+  {{ user_.first_name }}<br>
+  {{ user_.email }}
+
+  <a href="{% url 'accounts:update'%}" type="button" class="btn btn-outline-info">
+    수정
+  </a>
+
 {% endblock body %}
