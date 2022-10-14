@@ -13,7 +13,22 @@
   </head>
 
   <body>
+    {{ request.user }}
+    
+    <a href="{% url 'accounts:login' %}" type="button" class="btn btn-outline-info">
+      로그인
+    </a>
+
+    <a href="{% url 'accounts:logout' %}" type="button" class="btn btn-outline-info">
+      로그아웃
+    </a>
+
+
+    <h2>made by KO, JS, SH</h2>
+
     {% block body %}{% endblock body %}
+    
+
 
   </body>
 
