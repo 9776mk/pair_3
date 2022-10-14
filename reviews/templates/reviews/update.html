@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% load django_bootstrap5 %}
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <h1> 수정 </h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    {% bootstrap_form review_form %}
+
+    {% bootstrap_button "수정" button_type="submit" button_class="btn-primary" %}
+  </form>
+  {% endblock%}

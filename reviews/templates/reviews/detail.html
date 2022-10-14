@@ -11,4 +11,7 @@
   {{ reviews.created_at }}
   {{ reviews.updated_at }}
 
+  <a href="{% url 'reviews:update' reviews.pk %}">수정</a>
+  <a href="{% url 'reviews:delete' reviews.pk %}">삭제</a>
+
 {% endblock body %}
