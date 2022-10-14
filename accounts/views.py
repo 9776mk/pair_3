@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 # 로그인 입력용 form
 from django.contrib.auth.forms import AuthenticationForm
 # 로그인 기능
 from django.contrib.auth import login as auth_login
+
 from django.contrib.auth import get_user_model
 
 
@@ -14,7 +15,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('accounts:signup')
+            return redirect('accounts:index')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -32,7 +33,7 @@ def login(request):
             # user 객체는 form에서 인증된 유저 정보를 가져옴
             auth_login(request, form.get_user())
             ######## 다른 곳으로 보내줄 곳을 위해 수정할 것! #######
-            return redirect('accounts:signup')
+            return redirect('accounts:index')
 
     else:
          form = AuthenticationForm()
@@ -40,7 +41,7 @@ def login(request):
         'form' : form
     }
     ######## 다른 곳으로 보내줄 곳을 위해 수정할 것! #######
-    return render(request, 'accounts/signup.html', context)
+    return render(request, 'accounts/login.html', context)
 
 def index(request):
     user = get_user_model().objects.all()
@@ -55,3 +56,17 @@ def detail(request, user_pk):
         'user_' : user
     }
     return render(request,"accounts/detail.html",context)
+
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        # form = CustomUserChangeForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:detail', request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+    'form': form,
+    }
+    return render(request, 'accounts/update.html', context)
